@@ -1,0 +1,203 @@
+Classfile /F:/self/stu/target/classes/com/example/stu/jvm/TestJavap.class
+  Last modified 2020-12-30; size 1296 bytes
+  MD5 checksum 2ab81de96676ca34c7446dbe568be816
+  Compiled from "TestJavap.java"
+public class com.example.stu.jvm.TestJavap
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #16.#44        // java/lang/Object."<init>":()V
+   #2 = String             #45            // yangcai
+   #3 = Class              #46            // com/example/stu/jvm/User
+   #4 = Methodref          #3.#44         // com/example/stu/jvm/User."<init>":()V
+   #5 = Methodref          #47.#48        // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+   #6 = Methodref          #3.#49         // com/example/stu/jvm/User.setAge:(Ljava/lang/Integer;)V
+   #7 = Methodref          #3.#50         // com/example/stu/jvm/User.setName:(Ljava/lang/String;)V
+   #8 = Methodref          #15.#51        // com/example/stu/jvm/TestJavap.printJb:(I)V
+   #9 = Methodref          #15.#52        // com/example/stu/jvm/TestJavap.printYy:(Lcom/example/stu/jvm/User;)V
+  #10 = Fieldref           #53.#54        // java/lang/System.out:Ljava/io/PrintStream;
+  #11 = Methodref          #55.#56        // java/io/PrintStream.println:(I)V
+  #12 = String             #57            // yc
+  #13 = Methodref          #3.#58         // com/example/stu/jvm/User.getName:()Ljava/lang/String;
+  #14 = Methodref          #55.#59        // java/io/PrintStream.println:(Ljava/lang/String;)V
+  #15 = Class              #60            // com/example/stu/jvm/TestJavap
+  #16 = Class              #61            // java/lang/Object
+  #17 = Utf8               <init>
+  #18 = Utf8               ()V
+  #19 = Utf8               Code
+  #20 = Utf8               LineNumberTable
+  #21 = Utf8               LocalVariableTable
+  #22 = Utf8               this
+  #23 = Utf8               Lcom/example/stu/jvm/TestJavap;
+  #24 = Utf8               main
+  #25 = Utf8               ([Ljava/lang/String;)V
+  #26 = Utf8               args
+  #27 = Utf8               [Ljava/lang/String;
+  #28 = Utf8               a
+  #29 = Utf8               I
+  #30 = Utf8               b
+  #31 = Utf8               c
+  #32 = Utf8               name
+  #33 = Utf8               Ljava/lang/String;
+  #34 = Utf8               user
+  #35 = Utf8               Lcom/example/stu/jvm/User;
+  #36 = Utf8               MethodParameters
+  #37 = Utf8               printJb
+  #38 = Utf8               (I)V
+  #39 = Utf8               d
+  #40 = Utf8               printYy
+  #41 = Utf8               (Lcom/example/stu/jvm/User;)V
+  #42 = Utf8               SourceFile
+  #43 = Utf8               TestJavap.java
+  #44 = NameAndType        #17:#18        // "<init>":()V
+  #45 = Utf8               yangcai
+  #46 = Utf8               com/example/stu/jvm/User
+  #47 = Class              #62            // java/lang/Integer
+  #48 = NameAndType        #63:#64        // valueOf:(I)Ljava/lang/Integer;
+  #49 = NameAndType        #65:#66        // setAge:(Ljava/lang/Integer;)V
+  #50 = NameAndType        #67:#68        // setName:(Ljava/lang/String;)V
+  #51 = NameAndType        #37:#38        // printJb:(I)V
+  #52 = NameAndType        #40:#41        // printYy:(Lcom/example/stu/jvm/User;)V
+  #53 = Class              #69            // java/lang/System
+  #54 = NameAndType        #70:#71        // out:Ljava/io/PrintStream;
+  #55 = Class              #72            // java/io/PrintStream
+  #56 = NameAndType        #73:#38        // println:(I)V
+  #57 = Utf8               yc
+  #58 = NameAndType        #74:#75        // getName:()Ljava/lang/String;
+  #59 = NameAndType        #73:#68        // println:(Ljava/lang/String;)V
+  #60 = Utf8               com/example/stu/jvm/TestJavap
+  #61 = Utf8               java/lang/Object
+  #62 = Utf8               java/lang/Integer
+  #63 = Utf8               valueOf
+  #64 = Utf8               (I)Ljava/lang/Integer;
+  #65 = Utf8               setAge
+  #66 = Utf8               (Ljava/lang/Integer;)V
+  #67 = Utf8               setName
+  #68 = Utf8               (Ljava/lang/String;)V
+  #69 = Utf8               java/lang/System
+  #70 = Utf8               out
+  #71 = Utf8               Ljava/io/PrintStream;
+  #72 = Utf8               java/io/PrintStream
+  #73 = Utf8               println
+  #74 = Utf8               getName
+  #75 = Utf8               ()Ljava/lang/String;
+{
+  public com.example.stu.jvm.TestJavap();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 3: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/example/stu/jvm/TestJavap;
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=6, args_size=1
+         0: iconst_1
+         1: istore_1
+         2: iconst_2
+         3: istore_2
+         4: iload_1
+         5: iload_2
+         6: iadd
+         7: istore_3
+         8: ldc           #2                  // String yangcai
+        10: astore        4
+        12: new           #3                  // class com/example/stu/jvm/User
+        15: dup
+        16: invokespecial #4                  // Method com/example/stu/jvm/User."<init>":()V
+        19: astore        5
+        21: aload         5
+        23: iload_3
+        24: invokestatic  #5                  // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        27: invokevirtual #6                  // Method com/example/stu/jvm/User.setAge:(Ljava/lang/Integer;)V
+        30: aload         5
+        32: aload         4
+        34: invokevirtual #7                  // Method com/example/stu/jvm/User.setName:(Ljava/lang/String;)V
+        37: iload_3
+        38: invokestatic  #8                  // Method printJb:(I)V
+        41: aload         5
+        43: invokestatic  #9                  // Method printYy:(Lcom/example/stu/jvm/User;)V
+        46: return
+      LineNumberTable:
+        line 5: 0
+        line 6: 2
+        line 7: 4
+        line 8: 8
+        line 9: 12
+        line 10: 21
+        line 11: 30
+        line 13: 37
+        line 14: 41
+        line 15: 46
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      47     0  args   [Ljava/lang/String;
+            2      45     1     a   I
+            4      43     2     b   I
+            8      39     3     c   I
+           12      35     4  name   Ljava/lang/String;
+           21      26     5  user   Lcom/example/stu/jvm/User;
+    MethodParameters:
+      Name                           Flags
+      args
+
+  public static void printJb(int);
+    descriptor: (I)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=2, args_size=1
+         0: iload_0
+         1: iconst_1
+         2: iadd
+         3: istore_1
+         4: getstatic     #10                 // Field java/lang/System.out:Ljava/io/PrintStream;
+         7: iload_1
+         8: invokevirtual #11                 // Method java/io/PrintStream.println:(I)V
+        11: return
+      LineNumberTable:
+        line 18: 0
+        line 19: 4
+        line 20: 11
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      12     0     c   I
+            4       8     1     d   I
+    MethodParameters:
+      Name                           Flags
+      c
+
+  public static void printYy(com.example.stu.jvm.User);
+    descriptor: (Lcom/example/stu/jvm/User;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: ldc           #12                 // String yc
+         3: invokevirtual #7                  // Method com/example/stu/jvm/User.setName:(Ljava/lang/String;)V
+         6: getstatic     #10                 // Field java/lang/System.out:Ljava/io/PrintStream;
+         9: aload_0
+        10: invokevirtual #13                 // Method com/example/stu/jvm/User.getName:()Ljava/lang/String;
+        13: invokevirtual #14                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+        16: return
+      LineNumberTable:
+        line 23: 0
+        line 24: 6
+        line 25: 16
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0  user   Lcom/example/stu/jvm/User;
+    MethodParameters:
+      Name                           Flags
+      user
+}
+SourceFile: "TestJavap.java"

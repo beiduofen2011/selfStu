@@ -1,0 +1,60 @@
+server:
+  port: 7120
+  max-http-header-size: 20480
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+    open-in-view: true
+    show-sql: false
+    hibernate : ddl-auto
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+  datasource:
+    hikari:
+      auto-commit: true
+      connection-test-query: SELECT 1
+      connection-timeout: 3000
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      maximum-pool-size: 30
+      minimum-idle: 20
+      pool-name: DatebookHikariCP
+    url: jdbc:mysql://localhost:3306/quartztest?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=CONVERT_TO_NULL&useOldAliasMetadataBehavior=true&useSSL=false&allowMultiQueries=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: admin
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7111/eureka/
+  instance:
+    appname: hikari-provider
+    prefer-ip-address: true
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    TaskMonitorRunLogApi:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+  threadpool:
+    default:
+      coreSize: 10
+      maxQueueSize: 30
+      queueSizeRejectionThreshold: 30

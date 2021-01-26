@@ -1,0 +1,38 @@
+
+server:
+  port: 7113
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7111/eureka/
+  instance:
+    appname: gateway-provider
+    prefer-ip-address: true
+
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+      routes:
+        - id: job-provider
+          uri: lb://job-provider
+          predicates:
+            - Path=/job/**
+          filters:
+            - StripPrefix=1
+        - id: scheduler-provider
+          uri: lb://scheduler-provider
+          predicates:
+            - Path=/scheduler/**
+          filters:
+            - StripPrefix=1
+        - id: yc-provider
+          uri: http://www.baidu.com
+          predicates:
+            - Path=/yc/**
+          filters:
+            - StripPrefix=1

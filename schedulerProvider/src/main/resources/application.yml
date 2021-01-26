@@ -1,0 +1,11 @@
+
+server:
+  port: 7114
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7111/eureka/
+  instance:
+    appname: scheduler-provider
+    prefer-ip-address: true

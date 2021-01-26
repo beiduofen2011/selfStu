@@ -1,0 +1,59 @@
+Compiled from "TestJavap.java"
+public class com.example.stu.jvm.TestJavap {
+  public com.example.stu.jvm.TestJavap();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: iconst_1
+       1: istore_1
+       2: iconst_2
+       3: istore_2
+       4: iload_1
+       5: iload_2
+       6: iadd
+       7: istore_3
+       8: ldc           #2                  // String yangcai
+      10: astore        4
+      12: new           #3                  // class com/example/stu/jvm/User
+      15: dup
+      16: invokespecial #4                  // Method com/example/stu/jvm/User."<init>":()V
+      19: astore        5
+      21: aload         5
+      23: iload_3
+      24: invokestatic  #5                  // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      27: invokevirtual #6                  // Method com/example/stu/jvm/User.setAge:(Ljava/lang/Integer;)V
+      30: aload         5
+      32: aload         4
+      34: invokevirtual #7                  // Method com/example/stu/jvm/User.setName:(Ljava/lang/String;)V
+      37: iload_3
+      38: invokestatic  #8                  // Method printJb:(I)V
+      41: aload         5
+      43: invokestatic  #9                  // Method printYy:(Lcom/example/stu/jvm/User;)V
+      46: return
+
+  public static void printJb(int);
+    Code:
+       0: iload_0
+       1: iconst_1
+       2: iadd
+       3: istore_1
+       4: getstatic     #10                 // Field java/lang/System.out:Ljava/io/PrintStream;
+       7: iload_1
+       8: invokevirtual #11                 // Method java/io/PrintStream.println:(I)V
+      11: return
+
+  public static void printYy(com.example.stu.jvm.User);
+    Code:
+       0: aload_0
+       1: ldc           #12                 // String yc
+       3: invokevirtual #7                  // Method com/example/stu/jvm/User.setName:(Ljava/lang/String;)V
+       6: getstatic     #10                 // Field java/lang/System.out:Ljava/io/PrintStream;
+       9: aload_0
+      10: invokevirtual #13                 // Method com/example/stu/jvm/User.getName:()Ljava/lang/String;
+      13: invokevirtual #14                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+      16: return
+}

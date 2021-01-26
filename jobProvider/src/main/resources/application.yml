@@ -1,0 +1,33 @@
+
+server:
+  port: 7112
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7111/eureka/
+  instance:
+    appname: job-provider
+    prefer-ip-address: true
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    ServiceRequestApi:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 120000
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 120000
+  threadpool:
+    default:
+      coreSize: 10
+      maxQueueSize: 30
+      queueSizeRejectionThreshold: 30
