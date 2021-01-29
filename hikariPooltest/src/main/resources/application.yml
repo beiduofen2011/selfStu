@@ -28,7 +28,9 @@ spring:
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
-
+  application:
+    name: hikari-provider
+    #   切记 feignclient寻找的实例名
 eureka:
   client:
     serviceUrl:
@@ -43,18 +45,24 @@ feign:
 
 hystrix:
   command:
-    TaskMonitorRunLogApi:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 5000
+#    TaskMonitorRunLogApi:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 100000
     default:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 5000
+            timeoutInMilliseconds: 120000
   threadpool:
     default:
       coreSize: 10
       maxQueueSize: 30
       queueSizeRejectionThreshold: 30
+
+  ribbon:
+     ConnectTimeout: 60000
+     ReadTimeout: 60000
+     eureka:
+       enabled: true

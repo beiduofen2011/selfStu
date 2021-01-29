@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(name = "job-provider",contextId = "job-task-monitor-log")
 public interface TaskMonitorRunLogApi {
 
-    @RequestMapping(value = "/runJob", method = RequestMethod.GET)
-    void runJob();
+
+    @RequestMapping(value = "/runJob",method = RequestMethod.GET)
+    public void runJob();
 }

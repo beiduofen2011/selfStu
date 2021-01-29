@@ -1,5 +1,6 @@
 package com.fen.dou.hikarietest;
 
+import com.fen.dou.hikarietest.config.ServiceConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
@@ -12,11 +13,11 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
-@SpringBootApplication
-@ComponentScan(basePackages = "com.fen.dou")
-@EnableTransactionManagement
-@EnableEurekaClient
-@EnableFeignClients
+//@SpringBootApplication
+//@ComponentScan(basePackages = "com.fen.dou")
+//@EnableTransactionManagement
+//@EnableEurekaClient
+//@EnableFeignClients(basePackages = "com.fen.dou.hikarietest.api")
 //@EnableJpaRepositories(basePackages ="com.fen.dou.hikarietest.dao")
 //@EnableTransactionManagement(mode = AdviceMode.ASPECTJ)
 //@EnableJpaRepositories(enableDefaultTransactions=false)
@@ -25,7 +26,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //@EnableJpaRepositories(enableDefaultTransactions = false)
 ////业务方法上关闭事务
 //@Transactional(propagation= Propagation.NOT_SUPPORTED)
-
+@ServiceConfig
 public class HikariApplication {
 	@Bean
 	public Object testBean(PlatformTransactionManager platformTransactionManager){

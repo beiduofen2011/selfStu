@@ -56,9 +56,9 @@ public class TaskMonitorRunLogService {
         TaskMonitorRunLogInfo taskRunLog = new TaskMonitorRunLogInfo(taskMonitorId, Level.INFO.toString(), message);
         taskMonitorRunLogInfoDao.save(taskRunLog);
 //
-        CountDownLatch countDownLatch = new CountDownLatch(1);
+//        CountDownLatch countDownLatch = new CountDownLatch(1);
 
-        boolean flag = countDownLatch.await(  8 * 1000L, TimeUnit.MILLISECONDS);
+//        boolean flag = countDownLatch.await(  8 * 1000L, TimeUnit.MILLISECONDS);
 //        Assert.isTrue(1==2,"我报错了");
 
         taskMonitorRunLogApi.runJob();

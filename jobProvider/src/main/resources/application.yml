@@ -9,7 +9,10 @@ eureka:
   instance:
     appname: job-provider
     prefer-ip-address: true
-
+spring:
+  application:
+    name: job-provider
+    #   切记 feignclient寻找的实例名
 feign:
   hystrix:
     enabled: true
