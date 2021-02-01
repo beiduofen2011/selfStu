@@ -11,7 +11,9 @@
 		<module>schedulerProvider</module>
         <module>quartzTest</module>
 		<module>hikariPooltest</module>
-	</modules>
+		<module>hysDashboard</module>
+        <module>threadPoolTest</module>
+    </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>

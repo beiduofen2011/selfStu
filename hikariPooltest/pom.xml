@@ -54,6 +54,11 @@
             <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
 <!--            <version>2.1.1.RELEASE</version>-->
         </dependency>
+        <!--    hystrix监控必备-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>

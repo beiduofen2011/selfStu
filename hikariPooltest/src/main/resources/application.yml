@@ -6,7 +6,7 @@ spring:
     allow-bean-definition-overriding: true
   jpa:
     database-platform: org.hibernate.dialect.MySQL57Dialect
-    open-in-view: true
+    open-in-view: false
     show-sql: false
     hibernate : ddl-auto
     properties:
@@ -38,31 +38,50 @@ eureka:
   instance:
     appname: hikari-provider
     prefer-ip-address: true
-
+#开启hystrix
 feign:
   hystrix:
     enabled: true
 
 hystrix:
-  command:
-#    TaskMonitorRunLogApi:
+#  command:
+#    TaskMonitorRunLogApi#method(参数类型): 方法的超时  或者在方法前面加注解 @HystrixCommand(commandKey = "abc"),此处就填 abc
 #      execution:
 #        isolation:
 #          thread:
 #            timeoutInMilliseconds: 100000
     default:
+      requestCache:
+        enabled: true #开启requestcache功能-----------------减压方案
+      fallback:
+        enabled: true #开启服务降级功能（异常 降级）执行fallback
       execution:
+        timeout:
+          enaled: true  #HystrixCommand.run()是否有超时限制
         isolation:
           thread:
-            timeoutInMilliseconds: 120000
+            timeoutInMilliseconds: 80000 # (全局超时)设置调用者等待命令执行的超时限制，超过此时间，HystrixCommand被标记为TIMEOUT，并执行fallback逻辑。
+            interruptOnTimeout: true # 超时以后终止线程，执行fallback
+      circuitBreaker:
+        requestVolumeThreshold: 10  #时间窗口内最小请求数，当小于这个请求数，即使全部失败也不会熔断。比如设置此值为20，那么如果当前窗口为19（小于等于20），及时19个请求都失败了，断路器也不会打开。
+        errorThresholdPercentage: 50 #该属性用来设置断路器打开的错误百分比条件。默认值为50，表示在滚动时间窗中，在请求值超过requestVolumeThreshold阈值的前提下，如果错误请求数百分比超过50，就把断路器设置为“打开”状态，否则就设置为“关闭”状态
+      metrics:
+        rollingStats:
+           timeInMilliseconds: 2000 #设置滑动时间窗口
   threadpool:
     default:
-      coreSize: 10
-      maxQueueSize: 30
+      coreSize: 20
+      maxQueueSize: 40
       queueSizeRejectionThreshold: 30
 
-  ribbon:
-     ConnectTimeout: 60000
-     ReadTimeout: 60000
-     eureka:
-       enabled: true
+ribbon:
+  ConnectTimeout: 6000
+  ReadTimeout: 6000
+#     eureka:
+#       enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

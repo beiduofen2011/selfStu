@@ -5,7 +5,11 @@ import com.fen.dou.hikarietest.api.TaskMonitorRunLogApi;
 import com.fen.dou.hikarietest.dao.JobMonitorRunLogInfoDao;
 import com.fen.dou.hikarietest.dao.TaskMonitorRunLogInfoDao;
 import com.fen.dou.hikarietest.entity.JobMonitorRunLogInfo;
+import com.fen.dou.hikarietest.entity.ResultVo;
 import com.fen.dou.hikarietest.entity.TaskMonitorRunLogInfo;
+import com.google.gson.JsonParser;
+import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheKey;
+import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheResult;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,15 +61,22 @@ public class TaskMonitorRunLogService {
         taskMonitorRunLogInfoDao.save(taskRunLog);
 //
 //        CountDownLatch countDownLatch = new CountDownLatch(1);
-
-//        boolean flag = countDownLatch.await(  8 * 1000L, TimeUnit.MILLISECONDS);
+//
+//        boolean flag = countDownLatch.await(  20 * 1000L, TimeUnit.MILLISECONDS);
 //        Assert.isTrue(1==2,"我报错了");
 
-        taskMonitorRunLogApi.runJob();
+        ResultVo resultVo = taskMonitorRunLogApi.runJob().queue().get();
+        if(resultVo != null){
+            System.out.println("------------resultVo------------"+ resultVo.getError());
+        }
     //    readSj();
         return null;
     }
 
+    @CacheResult
+    public String requestcache(@CacheKey String uuid)  {
+        return taskMonitorRunLogApi.findJob(uuid);
+    }
     public void readSj() throws Exception {
 
         File file = new File("C:\\Users\\70765\\Desktop\\ssssss\\shuj.txt");

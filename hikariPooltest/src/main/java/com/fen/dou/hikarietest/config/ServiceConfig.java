@@ -1,7 +1,9 @@
 package com.fen.dou.hikarietest.config;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -22,7 +24,8 @@ import java.lang.annotation.*;
 @ComponentScan(basePackages = "com.fen.dou")
 //@EnableTransactionManagement(mode = AdviceMode.ASPECTJ)
 @EnableAspectJAutoProxy(exposeProxy=true)
-@EnableScheduling
+//@EnableCircuitBreaker   EnableHystrix里面包括了EnableCircuitBreaker
+@EnableHystrix
 public @interface ServiceConfig {
 
 }
