@@ -55,115 +55,29 @@ public class TaskMonitorRunLogService {
     private TaskMonitorRunLogApi taskMonitorRunLogApi;
 
 //    @Transactional(propagation= Propagation.NOT_SUPPORTED)
-    public TaskMonitorRunLogInfo saveInfoLog(String taskMonitorId, String message) throws Exception {
-
+    public String saveInfoLog(String taskMonitorId, String message) throws Exception {
         TaskMonitorRunLogInfo taskRunLog = new TaskMonitorRunLogInfo(taskMonitorId, Level.INFO.toString(), message);
         taskMonitorRunLogInfoDao.save(taskRunLog);
-//
 //        CountDownLatch countDownLatch = new CountDownLatch(1);
-//
 //        boolean flag = countDownLatch.await(  20 * 1000L, TimeUnit.MILLISECONDS);
 //        Assert.isTrue(1==2,"我报错了");
-
-        ResultVo resultVo = taskMonitorRunLogApi.runJob().queue().get();
-        if(resultVo != null){
-            System.out.println("------------resultVo------------"+ resultVo.getError());
-        }
-    //    readSj();
-        return null;
+        taskMonitorRunLogApi.runJob();
+        return "success";
     }
-
     @CacheResult
     public String requestcache(@CacheKey String uuid)  {
         return taskMonitorRunLogApi.findJob(uuid);
     }
-    public void readSj() throws Exception {
-
-        File file = new File("C:\\Users\\70765\\Desktop\\ssssss\\shuj.txt");
-
-        try{
-            BufferedReader br = new BufferedReader(new FileReader(file));//构造一个BufferedReader类来读取文件
-            String s = null;
-            int i = 0;
-            while((s = br.readLine())!=null){//使用readLine方法，一次读一行
-                String mystr = br.readLine();
-                System.out.println("mystr"+mystr);
-                if(mystr != null){
-                    String[]  str = mystr.split("\\|");
-                    String taskName  = str[0];
-                    String startTime = str[1];
-                    String endTime   = str[2];
-                    String cron    = str[3];
-                    String processDefinitionId = str[4];
-                    System.out.println("taskName"+taskName);
-                    System.out.println("startTime"+startTime);
-                    System.out.println("endTime"+endTime);
-                    System.out.println("cron"+cron);
-                    System.out.println("processDefinitionId"+processDefinitionId);
-
-                    System.out.println("-------i----------"+ (++i));
-
-                    Map<String, String> map = new HashMap<>();
-                    map.put(cron, startTime);
-                    testCronAlg(map,endTime,processDefinitionId,taskName);
-                }
-            }
-            br.close();
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+    public String timeout(long timel)  {
+        return taskMonitorRunLogApi.timeout(timel);
     }
-
-
-
-    public  void testCronAlg(Map<String, String> map,String endTimeStr,String processDefinitionId,String taskName) throws Exception {
-        int count = 0;
-        for (Map.Entry<String, String> entry : map.entrySet()) {
-            System.out.println(++count);
-            System.out.println("cron = "+entry.getKey());
-            System.out.println("date = "+entry.getValue());
-            CronSequenceGenerator cronSequenceGenerator = new CronSequenceGenerator(entry.getKey());
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date date = sdf.parse(entry.getValue());
-            Date endTime = sdf.parse(endTimeStr);
-            String str2 = null;
-            Date mydate = sdf.parse(str2 == null ?entry.getValue():str2);
-            while(mydate.before(endTime)) {
-                Date date2 = null;
-                try {
-                    date2 = cronSequenceGenerator.next(date);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                if (date2 != null) {
-                    str2 = sdf.format(date2);
-                }
-                date = date2;
-                mydate = date2;
-                String sssssss = "insert into  ods.szj_mrst_schedules(task_name,task_time,process_definition_id,update_flag)  value (`"+taskName+"`,`"+str2+"`,`"+processDefinitionId+"`,"+1+")";
-                JobMonitorRunLogInfo  jobRunLog =  new JobMonitorRunLogInfo("myyc", Level.INFO.toString(), sssssss);
-                jobMonitorRunLogInfoDao.save(jobRunLog);
-            }
-        }
+    public String exception()  {
+        return taskMonitorRunLogApi.exception();
     }
-//    public TaskMonitorRunLogInfo saveLogwaite(String taskMonitorId, String message)  {
-//        TaskMonitorRunLogInfo runLog = new TaskMonitorRunLogInfo(taskMonitorId, Level.INFO.toString(), message);
-//        long startTime = System.currentTimeMillis();
-//        TaskMonitorRunLogInfo taskMonitorRunLogInfo = taskMonitorRunLogInfoDao.save(runLog);
-//        long endTime = System.currentTimeMillis();
-//        System.out.println ("--------------插入消耗时间--------------"+ (endTime - startTime));
-//
-//        return taskMonitorRunLogInfo;
-//    }
-//    public List<TaskMonitorRunLogInfo> queryInfoLog(String taskMonitorId) {
-//        TaskMonitorRunLogInfo taskMonitorRunLogInfo = new TaskMonitorRunLogInfo();
-//        taskMonitorRunLogInfo.setTaskMonitorId(taskMonitorId);
-//        Example<TaskMonitorRunLogInfo> example = Example.of(taskMonitorRunLogInfo);
-//        long startTime = System.currentTimeMillis();
-//        List<TaskMonitorRunLogInfo> taskMonitorRunLogInfoList = taskMonitorRunLogInfoDao.findAll(example);
-//        long endTime = System.currentTimeMillis();
-//        System.out.println ("--------------查询消耗时间--------------"+ (endTime - startTime));
-//        return taskMonitorRunLogInfoList;
-//    }
+    public String maxRequestNum()  {
+        return taskMonitorRunLogApi.maxRequestNum();
+    }
+    public String testCircuit()  {
+        return taskMonitorRunLogApi.testCircuit();
+    }
 }

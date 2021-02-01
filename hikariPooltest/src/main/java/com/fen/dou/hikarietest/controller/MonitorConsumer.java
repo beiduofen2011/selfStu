@@ -20,7 +20,7 @@ public class MonitorConsumer {
 
 
     @PostMapping("/save")
-    public TaskMonitorRunLogInfo saveLog(@RequestBody TaskMonitorRunLogInfoVo taskMonitorRunLogInfoVo) throws Exception {
+    public String saveLog(@RequestBody TaskMonitorRunLogInfoVo taskMonitorRunLogInfoVo) throws Exception {
         String taskManagerId = taskMonitorRunLogInfoVo.getTaskMonitorId();
         String message = taskMonitorRunLogInfoVo.getLogMessage();
         return taskMonitorRunLogService.saveInfoLog(taskManagerId,message);
@@ -33,6 +33,28 @@ public class MonitorConsumer {
         String sss = taskMonitorRunLogService.requestcache(uuid);
         return sss;
     }
+    @GetMapping("/timeout/{timel}")
+    public String timeout(@PathVariable long timel) throws Exception {
+        String sss = taskMonitorRunLogService.timeout(timel);
+        return sss;
+    }
+    @GetMapping("/exception")
+    public String exception() throws Exception {
+        String sss = taskMonitorRunLogService.exception();
+        return sss;
+    }
+
+    @GetMapping("/maxRequestNum")
+    public String maxRequestNum() throws Exception {
+        String sss = taskMonitorRunLogService.maxRequestNum();
+        return sss;
+    }
+    @GetMapping("/testCircuit")
+    public String testCircuit() throws Exception {
+        String sss = taskMonitorRunLogService.testCircuit();
+        return sss;
+    }
+
 //    @PostMapping("/save/waite")
 //    public TaskMonitorRunLogInfo saveLogwaite(@RequestBody TaskMonitorRunLogInfoVo taskMonitorRunLogInfoVo){
 //        String taskManagerId = taskMonitorRunLogInfoVo.getTaskMonitorId();
