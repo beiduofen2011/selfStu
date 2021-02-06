@@ -8,9 +8,13 @@ import com.netflix.hystrix.HystrixRequestCache;
 import com.netflix.hystrix.strategy.concurrency.HystrixRequestContext;
 import lombok.Cleanup;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -55,6 +59,11 @@ public class MonitorConsumer {
         return sss;
     }
 
+    @GetMapping("/testCircuit")
+    public String testCircuit1(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String sss = taskMonitorRunLogService.testCircuit();
+        return sss;
+    }
 //    @PostMapping("/save/waite")
 //    public TaskMonitorRunLogInfo saveLogwaite(@RequestBody TaskMonitorRunLogInfoVo taskMonitorRunLogInfoVo){
 //        String taskManagerId = taskMonitorRunLogInfoVo.getTaskMonitorId();
