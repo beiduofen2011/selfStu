@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.fen.dou.springstu.app.outerfile.UserConfiguration

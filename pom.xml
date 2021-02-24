@@ -13,6 +13,10 @@
 		<module>hikariPooltest</module>
 		<module>hysDashboard</module>
         <module>threadPoolTest</module>
+        <module>springstu</module>
+        <module>tomcatStu</module>
+        <module>nettyStu</module>
+        <module>springAopStu</module>
     </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
