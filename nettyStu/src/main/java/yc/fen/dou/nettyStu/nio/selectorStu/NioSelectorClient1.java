@@ -1,8 +1,5 @@
 package yc.fen.dou.nettyStu.nio.selectorStu;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
@@ -11,12 +8,8 @@ import java.nio.channels.SocketChannel;
 import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
 
-public class NioSelectorClient {
+public class NioSelectorClient1 {
 
     public static void main(String[] args) {
         try{
@@ -47,6 +40,7 @@ public class NioSelectorClient {
 
                                 byteBuffer.put((LocalDateTime.now() + "，连接成功").getBytes());
                                 byteBuffer.flip();
+                                Thread.sleep(20000);
                                 client.write(byteBuffer);
 
 //                                ExecutorService executorService = Executors.newSingleThreadExecutor(Executors.defaultThreadFactory());

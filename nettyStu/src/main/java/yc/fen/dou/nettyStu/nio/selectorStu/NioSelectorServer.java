@@ -26,6 +26,7 @@ public class NioSelectorServer {
                selector.select();
                // 获取selector中注册的全部事件的 SelectionKey 实例
                 Set<SelectionKey> selectionKeys = selector.selectedKeys();
+              System.out.println("----------select事件数----------"+ selectionKeys.size());
                 Iterator<SelectionKey> iterator = selectionKeys.iterator();
                 // 遍历SelectionKey对事件进行处理
                while (iterator.hasNext()) {
@@ -38,9 +39,12 @@ public class NioSelectorServer {
                         // 这里只注册了读事件，如果需要给客户端发送数据可以注册写事件
                         socketChannel.register(selector, SelectionKey.OP_READ);
                         System.out.println("客户端连接成功");
+                        //从事件集合里删除本次处理的key，防止下次select重复处理
+                        iterator.remove();
                     } else if (key.isReadable()) {
                         // 如果是OP_READ事件，则进行读取和打印
                          SocketChannel socketChannel = (SocketChannel) key.channel();
+                        System.out.println("----------从客户端读数据----------"+ socketChannel.getRemoteAddress());
                          ByteBuffer byteBuffer = ByteBuffer.allocate(128);
                          int len = socketChannel.read(byteBuffer);
                          // 如果有数据，把数据打印出来
@@ -51,9 +55,21 @@ public class NioSelectorServer {
                              System.out.println("客户端断开连接");
                              socketChannel.close();
                          }
+                        //从事件集合里删除本次处理的key，防止下次select重复处理
+                         iterator.remove();
+//                         socketChannel.register(selector, SelectionKey.OP_WRITE);
+                    }else if (key.isWritable()) {
+//                        SocketChannel socketChannel = (SocketChannel) key.channel();
+//                        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+//
+//                        byteBuffer.put(("----------写数据到客户端----------"+ socketChannel.getRemoteAddress()).getBytes());
+//                        byteBuffer.flip();
+//                        socketChannel.write(byteBuffer);
+//                        System.out.println("----------写数据到客户端----------"+ socketChannel.getRemoteAddress());
+//                        //从事件集合里删除本次处理的key，防止下次select重复处理
+//                        iterator.remove();
+                    //    socketChannel.close();
                     }
-                    //从事件集合里删除本次处理的key，防止下次select重复处理
-                     iterator.remove();
                }
           }
     }

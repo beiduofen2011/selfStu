@@ -1,15 +1,16 @@
-package com.fen.fou.aopStu;
+package com.fen.fou.aopStu.jdk;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
+
 @Component
 @Aspect
 @Slf4j
-public class ProcessAspectByMethod {
-  @Pointcut("execution(* com.fen.fou.aopStu.UserService.say(..))")
+public class JdkAspect {
+  @Pointcut("execution(* com.fen.fou.aopStu.jdk.Say.sayHello(..))")
   private void cut() {
   }
   @Before("cut()")

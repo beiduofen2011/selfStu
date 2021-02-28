@@ -1,5 +1,7 @@
 package com.fen.fou.aopStu;
 
+import com.fen.fou.aopStu.jdk.Say;
+import com.fen.fou.aopStu.jdk.SayImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cglib.core.DebuggingClassWriter;
@@ -18,5 +20,9 @@ public class SpringAopStuApplication {
 		userService.say("yangcai");
 	//	userService.weishe();
 		System.out.println("------userService------"+userService);
+
+		Say sayImpl = (Say)applicationContext.getBean("sayImpl");
+
+		System.out.println("------sayImpl------"+sayImpl);
 	}
 }
