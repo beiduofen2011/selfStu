@@ -8,6 +8,7 @@ public class UsernameFactoryBean implements FactoryBean<YcUserName> {
     @Override
     public YcUserName getObject() throws Exception {
         System.out.println("-----new YcUserName------");
+
         return new YcUserName();
     }
 

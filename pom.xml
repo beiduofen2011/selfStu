@@ -17,6 +17,9 @@
         <module>tomcatStu</module>
         <module>nettyStu</module>
         <module>springAopStu</module>
+        <module>zookeeperStu</module>
+        <module>shejimoshi</module>
+        <module>SocketDy</module>
     </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
