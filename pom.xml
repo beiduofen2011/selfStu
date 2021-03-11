@@ -20,6 +20,7 @@
         <module>zookeeperStu</module>
         <module>shejimoshi</module>
         <module>SocketDy</module>
+        <module>classLoaderStu</module>
     </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>

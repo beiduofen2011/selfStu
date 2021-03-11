@@ -5,7 +5,11 @@ spring:
   main:
     allow-bean-definition-overriding: true
   datasource:
-    url: jdbc:mysql://localhost:3306/quartztest?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useOldAliasMetadataBehavior=true&useSSL=false&allowMultiQueries=true
+    url: jdbc:mysql://localhost:3306/newquartz?useUnicode=true&characterEncoding=utf-8&useOldAliasMetadataBehavior=true&useSSL=false&allowMultiQueries=true
     username: admin
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
+
+
+file:
+  path: F:\self\stu\quartzTest\src\main\resources\quart
