@@ -1,5 +1,9 @@
 package yc.fen.dou.nettyStu.nio;
 
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+import io.netty.util.CharsetUtil;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -45,6 +49,17 @@ public class NioServer {
                       iterator.remove();
                       System.out.println("客户端断开连接");
                   }
+
+
+                String response = "HTTP/1.1 200 OK\r\n" +
+                        "Content-Length: " + "HelloClient".getBytes().length + "\r\n" +
+                        "Content-Type: text/html; charset-utf-8\r\n" +
+                        "\r\n" +
+                        "HelloClient" + "\r\n";
+
+                sc.write(ByteBuffer.wrap(response.getBytes()));
+
+
             }
         }
     }

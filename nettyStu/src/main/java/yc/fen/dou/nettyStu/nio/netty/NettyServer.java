@@ -36,7 +36,7 @@ public class NettyServer {
             //启动服务器(并绑定端口)，bind是异步操作，sync方法是等待异步操作执行完毕
             ChannelFuture cf = bootstrap.bind(9000).sync();
             //给cf注册监听器，监听我们关心的事件
-            /*  cf.addListener(new ChannelFutureListener() {
+            cf.addListener(new ChannelFutureListener() {
                 @Override
                 public void operationComplete(ChannelFuture future) throws Exception {
                 if (cf.isSuccess()) {
@@ -45,7 +45,7 @@ public class NettyServer {
                       System.out.println("监听端口9000失败");
                 }
               }
-             });*/
+             });
             //对通道关闭进行监听，closeFuture是异步操作，监听通道关闭
             // 通过sync方法同步等待通道关闭处理完毕，这里会阻塞等待通道关闭完成
             cf.channel().closeFuture().sync();

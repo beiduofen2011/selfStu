@@ -36,7 +36,13 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        ByteBuf buf = Unpooled.copiedBuffer("HelloClient", CharsetUtil.UTF_8);
+        String response = "HTTP/1.1 200 OK\r\n" +
+                "Content-Length: " + "HelloClient".getBytes().length + "\r\n" +
+                "Content-Type: text/html; charset-utf-8\r\n" +
+                "\r\n" +
+                "HelloClient" + "\r\n";
+        ByteBuf buf = Unpooled.copiedBuffer(response, CharsetUtil.UTF_8);
+        System.out.println("客户端接收消息是:" + buf.toString(CharsetUtil.UTF_8));
         ctx.writeAndFlush(buf);
     }
 

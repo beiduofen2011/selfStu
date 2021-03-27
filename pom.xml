@@ -21,6 +21,11 @@
         <module>shejimoshi</module>
         <module>SocketDy</module>
         <module>classLoaderStu</module>
+        <module>aqsStu</module>
+		<module>springbootStu</module>
+        <module>suanfa</module>
+        <module>myTomcat</module>
+        <module>websocketStu</module>
     </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
