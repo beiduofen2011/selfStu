@@ -26,6 +26,7 @@
         <module>suanfa</module>
         <module>myTomcat</module>
         <module>websocketStu</module>
+        <module>paixusuanfa</module>
     </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
