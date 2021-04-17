@@ -27,6 +27,9 @@
         <module>myTomcat</module>
         <module>websocketStu</module>
         <module>paixusuanfa</module>
+        <module>jihelei</module>
+        <module>JdkQueueStu</module>
+        <module>shujujiegou</module>
     </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>

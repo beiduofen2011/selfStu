@@ -19,6 +19,7 @@ public class NioSelectorServer {
          // 打开Selector处理Channel，即创建epoll
         System.out.println("----------------------");
           Selector selector = Selector.open();
+
         System.out.println("---------1-------------");
           // 把ServerSocketChannel注册到selector上，并且selector对客户端accept连接操作感兴趣图灵诸葛老师
           serverSocket.register(selector, SelectionKey.OP_ACCEPT);

@@ -17,7 +17,7 @@ public class SpringAopStuApplication {
 		System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "C:\\Users\\70765\\Desktop\\cglib");
 		ApplicationContext applicationContext = SpringApplication.run(SpringAopStuApplication.class, args);
 		UserService userService = (UserService)applicationContext.getBean("userService");
-		userService.say("yangcai");
+		userService.weishe();
 	//	userService.weishe();
 		System.out.println("------userService------"+userService);
 

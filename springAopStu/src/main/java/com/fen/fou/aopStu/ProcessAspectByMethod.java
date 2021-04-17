@@ -9,6 +9,16 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Slf4j
 public class ProcessAspectByMethod {
+  @Pointcut("execution(* com.fen.fou.aopStu.UserService.weishe(..))")
+  private void cut1() {
+  }
+  @Around("cut1()")
+  public void doAround1(ProceedingJoinPoint process) throws Throwable {
+    System.out.println("--11111111111111----Around before------");
+    process.proceed();
+    System.out.println("--111111111111111----Around after------");
+  }
+
   @Pointcut("execution(* com.fen.fou.aopStu.UserService.say(..))")
   private void cut() {
   }

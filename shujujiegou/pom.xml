@@ -9,15 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>nettyStu</artifactId>
+    <artifactId>shujujiegou</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>4.1.63.Final</version>
-            <!-- <version>4.1.24.Final</version> -->
-        </dependency>
-    </dependencies>
 
 </project>

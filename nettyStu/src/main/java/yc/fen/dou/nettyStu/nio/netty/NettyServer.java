@@ -5,6 +5,8 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
 
 public class NettyServer {
 
@@ -13,7 +15,7 @@ public class NettyServer {
         //创建两个线程组bossGroup和workerGroup, 含有的子线程NioEventLoop的个数默认为cpu核数的两倍
         // bossGroup只是处理连接请求 ,真正的和客户端业务处理，会交给workerGroup完成
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        EventLoopGroup workerGroup = new NioEventLoopGroup(2);
         try {
             //创建服务器端的启动对象
             ServerBootstrap bootstrap = new ServerBootstrap();
@@ -28,13 +30,14 @@ public class NettyServer {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             //对workerGroup的SocketChannel设置处理器
-                            ch.pipeline().addLast(new NettyServerHandler());
+                            ch.pipeline().addLast(new StringDecoder()).addLast(new StringEncoder()).addLast(new NettyServerHandler());
                         }
                     });
             System.out.println("netty server start。。");
             //绑定一个端口并且同步, 生成了一个ChannelFuture异步对象，通过isDone()等方法可以判断异步事件的执行情况
             //启动服务器(并绑定端口)，bind是异步操作，sync方法是等待异步操作执行完毕
             ChannelFuture cf = bootstrap.bind(9000).sync();
+            ChannelFuture cf1 = bootstrap.bind(9001).sync();
             //给cf注册监听器，监听我们关心的事件
             cf.addListener(new ChannelFutureListener() {
                 @Override

@@ -6,11 +6,13 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * 自定义Handler需要继承netty规定好的某个HandlerAdapter(规范)
  */
 public class NettyServerHandler extends ChannelInboundHandlerAdapter {
-
+     private volatile static AtomicInteger atomicInteger = null;
     /**
      * 读取客户端发送的数据
      *
@@ -36,6 +38,11 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("-----------------"+atomicInteger.get());
+        if(atomicInteger.get() != 2){
+            atomicInteger.incrementAndGet();
+            Thread.sleep(10000000);
+        }
         String response = "HTTP/1.1 200 OK\r\n" +
                 "Content-Length: " + "HelloClient".getBytes().length + "\r\n" +
                 "Content-Type: text/html; charset-utf-8\r\n" +

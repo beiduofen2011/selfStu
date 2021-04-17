@@ -22,7 +22,7 @@ public class NioSelectorClient {
         try{
             SocketChannel socketChannel = SocketChannel.open();
             socketChannel.configureBlocking(false);
-            socketChannel.connect(new InetSocketAddress("localhost",9000));//服务端就是bind  然后accept  serverSocketChannel
+            socketChannel.connect(new InetSocketAddress("localhost",10010));//服务端就是bind  然后accept  serverSocketChannel
 
             Selector selector = Selector.open();
 
@@ -87,9 +87,6 @@ public class NioSelectorClient {
                     }
                 }
             }
-
-
-
 
         }catch (Exception e ) {
             e.printStackTrace();
